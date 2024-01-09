@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.springapitest.presentation.components.PostMainScreen
+import com.example.springapitest.presentation.components.RegisterApp
 import com.example.springapitest.presentation.components.UserScreen
 import com.example.springapitest.presentation.viewmodel.MainViewModel
 import com.example.springapitest.ui.theme.SpringApiTestTheme
@@ -22,25 +24,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             SpringApiTestTheme {
                 // A surface container using the 'background' color from the theme
-                UserScreen(viewModel = viewModel)
+                RegisterApp()
             }
 
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SpringApiTestTheme {
-        Greeting("Android")
-    }
-}

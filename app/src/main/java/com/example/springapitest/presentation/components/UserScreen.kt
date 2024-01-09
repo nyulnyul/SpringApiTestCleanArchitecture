@@ -10,11 +10,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.navigation.NavController
 import com.example.springapitest.presentation.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserScreen(viewModel: MainViewModel) {
+fun UserScreen(viewModel: MainViewModel,navController: NavController) {
     val userData = viewModel.userData.value
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -39,6 +40,7 @@ fun UserScreen(viewModel: MainViewModel) {
         )
         Button(onClick = {
             viewModel.registerUser( password = password, name = name, email = email)
+            navController.navigate("login")
         }) {
             Text("가입")
         }
