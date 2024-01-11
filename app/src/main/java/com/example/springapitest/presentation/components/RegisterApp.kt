@@ -36,7 +36,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.springapitest.domain.model.Post
-import com.example.springapitest.presentation.viewmodel.MainViewModel
+import com.example.springapitest.presentation.viewmodel.RegisterViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -67,7 +67,7 @@ fun RegisterApp() {
                 LoginScreen(navController = navController)
             }
             composable("register"){
-                UserScreen(navController = navController,viewModel = MainViewModel())
+                UserScreen(navController = navController,viewModel = RegisterViewModel())
             }
             composable("postList"){
                 PostMainScreen(navController = navController,posts= posts)

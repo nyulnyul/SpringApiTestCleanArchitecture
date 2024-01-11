@@ -11,24 +11,35 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.springapitest.R
+import com.example.springapitest.presentation.viewmodel.LoginViewModel
 import kotlinx.coroutines.NonDisposableHandle.parent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen( navController: NavController) {
+fun LoginScreen( navController: NavController, viewModel: LoginViewModel) {
+    val isLoginSuccess by viewModel.isLoginSuccess.observeAsState(false)
+    val loginErrorMessage by viewModel.loginErrorMessage.observeAsState("")
+
+    if (isLoginSuccess) {
+        navController.navigate("postList")
+    }
+
     var email by remember {
         mutableStateOf("")
     }
@@ -41,7 +52,8 @@ fun LoginScreen( navController: NavController) {
         .padding(16.dp)) {
         Box(
             modifier = Modifier
-                .fillMaxWidth().height(200.dp)
+                .fillMaxWidth()
+                .height(200.dp)
                 .align(alignment = androidx.compose.ui.Alignment.CenterHorizontally)
         ) {
 
@@ -71,13 +83,17 @@ fun LoginScreen( navController: NavController) {
                 .padding(bottom = 16.dp)
         )
         Button(onClick = {
-            navController.navigate("postList")
+            viewModel.login(email, password)
         }) {
             Text("로그인")
         }
+
         Button(onClick = { navController.navigate("register")}) {
             Text("회원가입")
 
+        }
+        if (!isLoginSuccess && loginErrorMessage.isNotEmpty()) {
+            Text(loginErrorMessage, modifier = Modifier.padding(16.dp), Color.Red)
         }
     }
 }

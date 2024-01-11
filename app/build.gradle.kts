@@ -102,7 +102,10 @@ dependencies {
 
     //compose constraint layout
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02")
-    
+
+    //compose livedata
+    implementation("androidx.compose.runtime:runtime-livedata:1.0.5")
+
 
 }
 kapt {
