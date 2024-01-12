@@ -36,9 +36,7 @@ fun LoginScreen( navController: NavController, viewModel: LoginViewModel) {
     val isLoginSuccess by viewModel.isLoginSuccess.observeAsState(false)
     val loginErrorMessage by viewModel.loginErrorMessage.observeAsState("")
 
-    if (isLoginSuccess) {
-        navController.navigate("postList")
-    }
+
 
     var email by remember {
         mutableStateOf("")
@@ -84,6 +82,10 @@ fun LoginScreen( navController: NavController, viewModel: LoginViewModel) {
         )
         Button(onClick = {
             viewModel.login(email, password)
+
+            if (isLoginSuccess) {
+                navController.navigate("postList")
+            }
         }) {
             Text("로그인")
         }

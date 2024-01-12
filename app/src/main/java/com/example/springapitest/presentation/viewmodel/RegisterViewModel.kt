@@ -6,10 +6,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.springapitest.data.model.UserModel
+import com.example.springapitest.domain.model.UserModel
 
 import com.example.springapitest.data.repository.RetrofitModule
-import com.example.springapitest.data.repository.User
+import com.example.springapitest.domain.model.User
+import kotlinx.coroutines.Dispatchers
 
 import kotlinx.coroutines.launch
 
@@ -23,7 +24,7 @@ class RegisterViewModel: ViewModel() { //viewmodel 클래스 선언
     val userData: State<UserModel?> = _userData //_userData를 ui에서 읽을 수 있게 선언
 
     fun registerUser( password: String, name: String, email: String) {
-        viewModelScope.launch { //코루틴을 실행해 ViewModel의 생명주기에 맞추어 코루틴을 관리하는 Scope
+        viewModelScope.launch(Dispatchers.IO) { //코루틴을 실행해 ViewModel의 생명주기에 맞추어 코루틴을 관리하는 Scope
             try {
                 val user = User(password, name, email) // Request 객체 생성
                 val response = RetrofitModule.apiService.registerUser(user) //apiService의 registerUser 메소드를 호출하여 서버에 요청후 응답을 response에 저장

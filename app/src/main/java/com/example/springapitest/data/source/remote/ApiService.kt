@@ -1,14 +1,11 @@
 package com.example.springapitest.data.source.remote
 
-import com.example.springapitest.data.model.UserModel
-import com.example.springapitest.data.repository.User
-import com.example.springapitest.data.repository.UserDTO
+import com.example.springapitest.domain.model.UserModel
+import com.example.springapitest.domain.model.User
+import com.example.springapitest.domain.model.UserDTO
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiService { //서버와 통신위한 메소드 정의
     @POST("users/register") //retrofit2 어노테이샨을 통해 registerUser메소드가 서버의 users/register 경로에 POST 요청

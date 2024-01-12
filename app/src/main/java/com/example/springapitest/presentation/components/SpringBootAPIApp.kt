@@ -36,6 +36,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.springapitest.domain.model.Post
+import com.example.springapitest.presentation.viewmodel.LoginViewModel
 import com.example.springapitest.presentation.viewmodel.RegisterViewModel
 
 
@@ -64,7 +65,7 @@ fun RegisterApp() {
     }) {
         NavHost(navController = navController, startDestination = "login", modifier = Modifier.fillMaxSize().padding(it)){
             composable("login"){
-                LoginScreen(navController = navController)
+                LoginScreen(navController = navController, viewModel = LoginViewModel())
             }
             composable("register"){
                 UserScreen(navController = navController,viewModel = RegisterViewModel())

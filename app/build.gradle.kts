@@ -43,6 +43,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -83,8 +84,6 @@ dependencies {
     //coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
-
-
 
     //viewmodel and livedata
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")

@@ -1,4 +1,4 @@
-package com.example.springapitest.data.model
+package com.example.springapitest.domain.model
 
 //server -> client
 data class UserModel(

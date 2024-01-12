@@ -26,9 +26,7 @@ fun UserScreen(viewModel: RegisterViewModel, navController: NavController) {
     val isRegisterSuccess by viewModel.isRegisterSuccess.observeAsState(false)
     val registerErrorMessage by viewModel.registerErrorMessage.observeAsState("")
 
-    if (isRegisterSuccess) {
-        navController.navigate("login")
-    }
+
 
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -53,6 +51,9 @@ fun UserScreen(viewModel: RegisterViewModel, navController: NavController) {
         )
         Button(onClick = {
             viewModel.registerUser( password = password, name = name, email = email)
+            if (isRegisterSuccess) {
+                navController.navigate("login")
+            }
 
         }) {
             Text("가입")

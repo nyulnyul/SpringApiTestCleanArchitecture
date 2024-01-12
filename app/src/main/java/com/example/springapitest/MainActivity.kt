@@ -10,7 +10,7 @@ import com.example.springapitest.ui.theme.SpringApiTestTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = RegisterViewModel()
+
 
         setContent {
             SpringApiTestTheme {
