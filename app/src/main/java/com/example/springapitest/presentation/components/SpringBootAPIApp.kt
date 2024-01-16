@@ -12,13 +12,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,12 +34,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.springapitest.R
 import com.example.springapitest.domain.model.Post
 import com.example.springapitest.presentation.viewmodel.LoginViewModel
 import com.example.springapitest.presentation.viewmodel.RegisterViewModel
@@ -56,14 +63,48 @@ fun RegisterApp() {
     }
 
     Scaffold(topBar = {
-        Column {
-            TopLogo()
-            SearchBar()
-            Spacer(modifier = Modifier.padding(6.dp))
+        TopAppBar(title = { Text(text = "철새✈️",
+            fontSize = 10.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(5.dp),
+            color = Color.DarkGray) }
+        , navigationIcon = {
+            IconButton(onClick = {
+            }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.menu),
+                    contentDescription = "back"
+                )
 
-        }
-    }) {
-        NavHost(navController = navController, startDestination = "login", modifier = Modifier.fillMaxSize().padding(it)){
+            }},
+
+            )
+
+//        Column {
+//            TopLogo()
+//            SearchBar()
+//            Spacer(modifier = Modifier.padding(6.dp))
+//
+//
+//        }
+    },
+
+        bottomBar = {
+            BottomAppBar(
+
+            ) {
+                IconButton(onClick = {}) {
+                    Icon(Icons.Default.Favorite, contentDescription = "Favorite")
+                }
+                IconButton(onClick = {}) {
+                    Icon(Icons.Default.Add, contentDescription = "Add")
+                }
+            }
+        }) {
+        SearchBar()
+        NavHost(navController = navController, startDestination = "login", modifier = Modifier
+            .fillMaxSize()
+            .padding(it)){
             composable("login"){
                 LoginScreen(navController = navController, viewModel = LoginViewModel())
             }
@@ -95,61 +136,21 @@ fun TopLogo() {
                 .fillMaxWidth()
                 .height(60.dp), contentAlignment = Alignment.Center
         ) {
-            Row {
+
+
                 Text(
-                    "O",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(5.dp),
-                    color = Color.Blue
-                )
-                Text(
-                    "B",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(5.dp),
-                    color = Color.Blue
-                )
-                Text(
-                    "J",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(5.dp),
-                    color = Color.Blue
-                )
-                Text(
-                    "E",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(5.dp),
-                    color = Color.Black
-                )
-                Text(
-                    "C",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(5.dp),
-                    color = Color.Black
-                )
-                Text(
-                    "T",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(5.dp),
-                    color = Color.Black
-                )
-                Text(
-                    text = "오브젝트 게시판",
+                    text = "철새",
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(5.dp),
                     color = Color.DarkGray
                 )
 
+
             }
         }
     }
-}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

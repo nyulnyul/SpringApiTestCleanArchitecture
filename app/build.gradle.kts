@@ -105,6 +105,13 @@ dependencies {
     //compose livedata
     implementation("androidx.compose.runtime:runtime-livedata:1.0.5")
 
+    //compose navigationIcon
+    implementation("androidx.compose.material3:material3-icons-extended:1.0.0-alpha03")
+
+    //vector drawable
+    implementation("androidx.vectordrawable:vectordrawable:1.1.0")
+    
+
 
 }
 kapt {
